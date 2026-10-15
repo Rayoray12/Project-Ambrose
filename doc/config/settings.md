@@ -40,6 +40,14 @@ Access says who may see and change a setting over the admin API and the panel. A
 | `GM.LogCommands` | bool | true | none | live | gameserver | normal | Whether every command run is written to the log. |
 | `GM.PlayerCommandsAsChat` | bool | true | none | live | gameserver | normal | Whether a player's chat line that starts with the command prefix is said as an ordinary line; when off it is refused and the player told so. An account above player level runs such a line as a command. |
 
+## Data
+
+| Key | Type | Default | Bounds | Applies | Apps | Access | What it does |
+|---|---|---|---|---|---|---|---|
+| `Data.ByteBudgetBytes` | unsigned | 1048576 bytes | from 0 to 1073741824 bytes | live | gameserver, loginserver | normal | How large a /api/data/ answer may be before it is refused naming this budget; 0 turns the check off. |
+| `Data.MaxConcurrentDecodes` | unsigned | 2 decodes | from 0 to 64 decodes | live | gameserver, loginserver | normal | How many /api/data/ decodes run at once per app; a request past it is refused naming this budget; 0 turns the check off. |
+| `Data.TimeBudgetMs` | unsigned | 5000 ms | from 0 to 60000 ms | live | gameserver, loginserver | normal | How long a /api/data/ request may build its answer before it is refused naming this budget; 0 turns the check off. |
+
 ## Diagnostics
 
 | Key | Type | Default | Bounds | Applies | Apps | Access | What it does |
