@@ -32,6 +32,16 @@ Access says who may see and change a setting over the admin API and the panel. A
 |---|---|---|---|---|---|---|---|
 | `Chat.SayRange` | float | 0 world units | from 0 to 100000 world units | live | gameserver | normal | How far a wizard's typed chat, quick chat and emotes reach the other wizards in its instance, read at each tick; 0 reaches the whole instance. |
 
+## Combat
+
+| Key | Type | Default | Bounds | Applies | Apps | Access | What it does |
+|---|---|---|---|---|---|---|---|
+| `Combat.MaxPips` | unsigned | 7 pips | from 0 to 14 pips | live | gameserver | normal | The most pips a duel participant may hold; the round's gain stops there. |
+| `Combat.PipsPerRound` | unsigned | 1 pips | from 0 to 7 pips | live | gameserver | normal | How many pips every living duel participant gains as each round begins. |
+| `Combat.PlanningSeconds` | unsigned | 30 s | from 1 to 600 s | live | gameserver | normal | How long a duel's planning phase lasts before every participant without a move passes; read as each round begins, so a change applies from the next round. |
+| `Combat.PrePlanningSeconds` | unsigned | 2 s | from 0 to 60 s | live | gameserver | normal | How long each round shows who is up first before its planning phase opens; read as each round begins. |
+| `Combat.StartGraceSeconds` | unsigned | 3 s | from 0 to 60 s | live | gameserver | normal | How long a new duel waits, with its participants on their circles, before its first round begins. |
+
 ## Commands
 
 | Key | Type | Default | Bounds | Applies | Apps | Access | What it does |
@@ -39,6 +49,14 @@ Access says who may see and change a setting over the admin API and the panel. A
 | `GM.CommandPrefix` | string | . | at most 8 bytes | live | gameserver | normal | What a chat line starts with to be read as a command. |
 | `GM.LogCommands` | bool | true | none | live | gameserver | normal | Whether every command run is written to the log. |
 | `GM.PlayerCommandsAsChat` | bool | true | none | live | gameserver | normal | Whether a player's chat line that starts with the command prefix is said as an ordinary line; when off it is refused and the player told so. An account above player level runs such a line as a command. |
+
+## Data
+
+| Key | Type | Default | Bounds | Applies | Apps | Access | What it does |
+|---|---|---|---|---|---|---|---|
+| `Data.ByteBudgetBytes` | unsigned | 1048576 bytes | from 0 to 1073741824 bytes | live | gameserver, loginserver | normal | How large a /api/data/ answer may be before it is refused naming this budget; 0 turns the check off. |
+| `Data.MaxConcurrentDecodes` | unsigned | 2 decodes | from 0 to 64 decodes | live | gameserver, loginserver | normal | How many /api/data/ decodes run at once per app; a request past it is refused naming this budget; 0 turns the check off. |
+| `Data.TimeBudgetMs` | unsigned | 5000 ms | from 0 to 60000 ms | live | gameserver, loginserver | normal | How long a /api/data/ request may build its answer before it is refused naming this budget; 0 turns the check off. |
 
 ## Diagnostics
 
