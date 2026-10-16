@@ -28,7 +28,7 @@ namespace
         void SetUp() override
         {
             sSettings.Clear();
-            _configFile = _directory.Write("gameserver.conf", "Zone.TransferMode = reconnect\n");
+            _configFile = _directory.Write("gameserver.conf", "Zone.TransferMode = reconnect\n").string();
             _config = std::make_unique<ConfigMgr>([](std::string const&) -> std::optional<std::string> { return std::nullopt; });
             ASSERT_TRUE(_config->LoadInitial(_configFile).Succeeded());
             std::vector<std::string> errors;

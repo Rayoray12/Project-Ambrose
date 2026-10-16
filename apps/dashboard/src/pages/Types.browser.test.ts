@@ -136,7 +136,9 @@ beforeEach(() => {
     session.state = "signed-in";
     live.status = status;
     live.now = Date.now();
-    live.apps = [{ name: "gameserver", supervision: { admin: { enabled: true } } }];
+    live.apps = [
+        { name: "gameserver", role: "game", realm: "test", address: "127.0.0.1", port: 1, revision: "r806919", supervision: null },
+    ];
 });
 
 afterEach(() => {
